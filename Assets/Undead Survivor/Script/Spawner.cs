@@ -18,10 +18,9 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-        timer += Time.deltaTime;
         level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / 10f),spawndata.Length-1); // Mathf.FloorToInt : 버림 vs Mathf.CeilToInt (바닥과 천장)
-                                                                                                   // spawndata.Length-1이 최대 레벨이라고 볼 수 있으므로 최대레벨과 비교하여 작은 값을 level로 설정.
-
+                                                                                                     // spawndata.Length-1이 최대 레벨이라고 볼 수 있으므로 최대레벨과 비교하여 작은 값을 level로 설정.
+        timer += Time.deltaTime;
         if (timer > spawndata[level].spawnTime)
         {
             timer = 0;
