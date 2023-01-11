@@ -45,8 +45,6 @@ public class PoolManager : MonoBehaviour
             select = Instantiate(prefabs[0], transform);
             // pool에도 등록해줌 (pool은 pools array의 원소)
             pools[index].Add(select);
-            Debug.Log(pools.Length);
-            Debug.Log(pools[index].Count);
         }
 
 

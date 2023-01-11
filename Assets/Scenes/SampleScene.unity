@@ -436,7 +436,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 262137197}
-  - component: {fileID: 262137198}
+  - component: {fileID: 262137199}
   m_Layer: 0
   m_Name: Rotating Bullet
   m_TagString: RotatingBullet
@@ -459,7 +459,7 @@ Transform:
   m_Father: {fileID: 11233300}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &262137198
+--- !u!114 &262137199
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -468,9 +468,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 262137196}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85306aa2d176a854d90998f48c5718f8, type: 3}
+  m_Script: {fileID: 11500000, guid: a5ec6141964336f4e95ff69a102d2914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distance: 2.5
   prefabs:
   - {fileID: 1357222762653605700, guid: 41f949fd0b431974b93a5daac0a498c7, type: 3}
 --- !u!1 &366161022
@@ -781,7 +782,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8.305555
+  orthographic size: 8.833333
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
