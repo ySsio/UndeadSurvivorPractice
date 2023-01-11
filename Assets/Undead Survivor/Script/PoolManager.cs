@@ -13,7 +13,7 @@ public class PoolManager : MonoBehaviour
 
     private void Awake()
     {
-        pools = new List<GameObject>[prefabs.Length];
+        pools = new List<GameObject>[prefabs[0].GetComponent<Enemy>().animCon.Length];
 
         for (int index=0; index < pools.Length; index++)
         {
@@ -42,9 +42,11 @@ public class PoolManager : MonoBehaviour
         if (!select)
         {
             // ... 새롭게 생성해서 select 변수에 할당
-            select = Instantiate(prefabs[index], transform);
+            select = Instantiate(prefabs[0], transform);
             // pool에도 등록해줌 (pool은 pools array의 원소)
             pools[index].Add(select);
+            Debug.Log(pools.Length);
+            Debug.Log(pools[index].Count);
         }
 
 
