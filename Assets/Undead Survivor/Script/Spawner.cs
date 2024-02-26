@@ -8,7 +8,7 @@ public class Spawner : MonoBehaviour
     public Transform[] spawnPoint;
     public SpawnData[] spawndata; // level마다 소환 몹 종류나 소환 간격 등이 달라지므로 그에 대한 배열을 선언해서 저장
 
-    public int level;
+    int level;
     float timer;
 
     private void Awake()
@@ -18,7 +18,7 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-        level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / 10f),spawndata.Length-1); // Mathf.FloorToInt : 버림 vs Mathf.CeilToInt (바닥과 천장)
+        level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / 5f),spawndata.Length-1); // Mathf.FloorToInt : 버림 vs Mathf.CeilToInt (바닥과 천장)
                                                                                                      // spawndata.Length-1이 최대 레벨이라고 볼 수 있으므로 최대레벨과 비교하여 작은 값을 level로 설정.
         timer += Time.deltaTime;
         if (timer > spawndata[level].spawnTime)
@@ -30,7 +30,7 @@ public class Spawner : MonoBehaviour
 
     void Spawn()
     {
-        GameObject enemy = GameManager.instance.pool.Get(level); // 새로 활성화된 또는 새로 생성된 enemy 게임오브젝트를 반환
+        GameObject enemy = GameManager.instance.pool.Get(0); // 새로 활성화된 또는 새로 생성된 enemy 게임오브젝트를 반환
         enemy.transform.position = spawnPoint[Random.Range(1, spawnPoint.Length)].transform.position; // spawnPoint 배열에 있는 점 포지션 중에 랜덤으로 골라서 위치 지정
         enemy.GetComponent<Enemy>().Init(spawndata[level]); // enemy 게임오브젝트의 Enemy component의 Init 함수를 실행. sprite, speed, maxHealth와 health를 초기화해줌.
     }

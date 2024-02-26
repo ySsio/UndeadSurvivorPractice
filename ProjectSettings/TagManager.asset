@@ -7,8 +7,6 @@ TagManager:
   - Ground
   - Area
   - Enemy
-  - RotatingBullet
-  - LaunchingBullet
   layers:
   - Default
   - TransparentFX

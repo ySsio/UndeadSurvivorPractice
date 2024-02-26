@@ -9,11 +9,10 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public float gameTime;
-    public float maxGameTime;
+    public float maxGameTime = 2 * 10f;
 
     public Player player;
     public PoolManager pool;
-    public Spawner spawner;
     void Awake()
     {
         instance = this;
