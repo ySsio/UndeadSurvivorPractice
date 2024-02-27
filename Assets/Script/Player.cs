@@ -10,10 +10,14 @@ public class Player : MonoBehaviour
     private Rigidbody2D rigid;
     [SerializeField]
     private float speed;
+    private SpriteRenderer spriteRenderer;
+    private Animator anim;
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -41,6 +45,19 @@ public class Player : MonoBehaviour
         rigid.MovePosition(nextVec + rigid.position);   // transform.position은 Vector3d인데 rigid.position은 Rigidbody2d.position이라 Vector2d네
 
         // 사용자의 프레임마다 update/fixedupdate 주기가 다르기 때문에 Time.deltaTime/Time.fixedDeltaTime을 곱해주지 않으면 환경에 따라 차이가 발생함.
+    }
+
+    // 다음 프레임으로 넘어가기 직전에 실행되는 생명주기 함수
+    private void LateUpdate()
+    {
+        // 애니메이션을 inputVec의 크기에 따라 설정 (run/stand)
+        anim.SetFloat("Speed", inputVec.magnitude);
+
+        // 인풋 x 값이 0보다 작으면 스프라이트렌더러 x축으로 뒤집음
+        if (inputVec.x !=0)
+        {
+            spriteRenderer.flipX = inputVec.x < 0;  
+        }
     }
 
 
