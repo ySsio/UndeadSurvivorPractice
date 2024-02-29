@@ -11,8 +11,10 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D rigid;
     private SpriteRenderer spriteRenderer;
 
+
     void Awake()
     {
+        target = GameManager.instance.player.GetComponent<Rigidbody2D>();
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -42,5 +44,13 @@ public class Enemy : MonoBehaviour
 
         // 타겟과의 위치관계로 스프라이트 뒤집기 설정
         spriteRenderer.flipX = target.position.x < rigid.position.x;
+    }
+
+
+ 
+    // 스크립트가 활성화 될 때 사용되는 함수 ..??
+    private void OnEnable()
+    {
+        
     }
 }
