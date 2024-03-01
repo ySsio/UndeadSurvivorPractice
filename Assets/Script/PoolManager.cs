@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PoolManager : MonoBehaviour
 {
     // .. 프리펩들 보관할 변수 (배열)

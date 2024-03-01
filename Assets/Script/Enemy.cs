@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.Processors;
 
 public class Enemy : MonoBehaviour
 {
@@ -65,5 +66,32 @@ public class Enemy : MonoBehaviour
         anim.runtimeAnimatorController = animCon[_spawndata.spriteType];
         speed = _spawndata.speed;
         maxHealth = _spawndata.maxHealth;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Bullet"))
+            return;
+
+        // Bullet을 맞으면 그 bullet의 데미지만큼 현재 체력을 감소시킴
+        health -= collision.GetComponent<Bullet>().damage;
+        if (health > 0)
+        {
+            // .. 살아있는 경우.. 히트 액션 등
+        }
+        else
+        {
+            // .. 죽은 경우 안 맞음
+            Dead();
+        }
+
+
+
+    }
+
+    // 사망
+    void Dead()
+    {
+        gameObject.SetActive(false);
     }
 }
