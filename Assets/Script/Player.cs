@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     private Rigidbody2D rigid;
     [SerializeField]
     private float speed;
+
+    public Scanner scanner;
     private SpriteRenderer spriteRenderer;
     private Animator anim;
 
@@ -18,6 +20,7 @@ public class Player : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        scanner = GetComponent<Scanner>();
     }
 
     // Update is called once per frame
