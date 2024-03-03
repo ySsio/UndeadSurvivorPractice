@@ -26,7 +26,7 @@ public class PoolManager : MonoBehaviour
     public GameObject Get(int objectNumber)
     {
         GameObject objectSelected = null;
-        
+
         // .. 선택한 풀의 비활성화된 게임 오브젝트를 찾아서 objectSelected에 할당.
         foreach (GameObject item in pool[objectNumber])
         {
