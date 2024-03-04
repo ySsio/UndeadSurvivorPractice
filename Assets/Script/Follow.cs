@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Follow : MonoBehaviour
 {
     RectTransform rect;
+    int a;
 
     private void Awake()
     {

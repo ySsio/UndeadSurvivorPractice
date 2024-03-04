@@ -15,10 +15,6 @@ public class Weapon : MonoBehaviour
 
     float timer;
 
-    private void Start()
-    {
-        Init();
-    }
 
     private void Update()
     {
@@ -38,6 +34,10 @@ public class Weapon : MonoBehaviour
         {
             AllocateBullet();
         }
+
+        // BroadcastMessage()로 모든 자식들이 ApplyGear을 실행하도록 함.
+        // 새로운 무기를 얻어 레벨업 해도 기어 속성이 적용되도록.
+        GameManager.instance.player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
     }
 
     private void ControlWeapon()
@@ -65,8 +65,30 @@ public class Weapon : MonoBehaviour
 
     }
 
-    public void Init()
+    public void Init(ItemData data)
     {
+        // Basic Set (게임오브젝트 생성 초기화)
+        name = "Weapon " + data.itemId;       // 여기서 name은 게임오브젝트의 이름을 설정하는 것. (this.name)
+        transform.parent = GameManager.instance.player.transform;
+        transform.localPosition = Vector3.zero;
+
+        // Property Set
+        id = data.itemId;
+        damage = data.baseDamage;
+        count = data.baseCount;
+
+
+        // 이게 뭐지
+        for (int i = 0; i < GameManager.instance.poolManager.prefabs.Length; i++)
+        {
+            if(data.projectile == GameManager.instance.poolManager.prefabs[i])
+            {
+                prefabId = i;
+                break;
+            }
+
+        }
+
         // id = Weapon의 종류
         switch (id)
         {
@@ -85,6 +107,10 @@ public class Weapon : MonoBehaviour
             default:
                 break;
         }
+
+        // BroadcastMessage()로 모든 자식들이 ApplyGear을 실행하도록 함.
+        // 새로운 무기를 얻어 레벨업 해도 기어 속성이 적용되도록.
+        GameManager.instance.player.BroadcastMessage("ApplyGear",SendMessageOptions.DontRequireReceiver);
     }
 
 
