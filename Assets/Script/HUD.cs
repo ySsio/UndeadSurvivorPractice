@@ -29,7 +29,7 @@ public class HUD : MonoBehaviour
         {
             case InfoType.Exp:
                 mySlider.value = GameManager.instance.exp;
-                mySlider.maxValue = GameManager.instance.MaxExp[GameManager.instance.level];
+                mySlider.maxValue = GameManager.instance.MaxExp[Mathf.Min(GameManager.instance.level,GameManager.instance.MaxExp.Length-1)];
                 break;
             case InfoType.Level:
                 myText.text = string.Format("Lv.{0:F0}",GameManager.instance.level);
