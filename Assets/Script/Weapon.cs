@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Threading;
 using UnityEngine;
 
@@ -107,6 +108,11 @@ public class Weapon : MonoBehaviour
             default:
                 break;
         }
+
+        // Hand set
+        Hand hand = GameManager.instance.player.hands[(int)data.itemType];  // item 정보 보면 왼손은 근거리 (id 0), 오른손은 원거리 (id 1)
+        hand.spriteRenderer.sprite = data.handSprite;
+        hand.gameObject.SetActive(true);
 
         // BroadcastMessage()로 모든 자식들이 ApplyGear을 실행하도록 함.
         // 새로운 무기를 얻어 레벨업 해도 기어 속성이 적용되도록.

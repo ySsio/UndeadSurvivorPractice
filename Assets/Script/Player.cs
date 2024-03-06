@@ -14,12 +14,15 @@ public class Player : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Animator anim;
 
+    public Hand[] hands; // [0]이 left, [1]이 right
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         scanner = GetComponent<Scanner>();
+        hands = GetComponentsInChildren<Hand>(true);    // 인자값으로 true를 넣으면 비활성화된 오브젝트에 대해서도 검출 (includeinactive)
     }
 
     // Update is called once per frame
