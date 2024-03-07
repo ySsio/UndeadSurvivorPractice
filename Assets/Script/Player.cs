@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -38,6 +39,8 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!GameManager.instance.isLive)
+            return;
         // 움직임 구현 방법 3가지
         // 1. rigid.AddForce()
         //rigid.AddForce(inputVec);
@@ -55,6 +58,9 @@ public class Player : MonoBehaviour
     // 다음 프레임으로 넘어가기 직전에 실행되는 생명주기 함수
     private void LateUpdate()
     {
+        if (!GameManager.instance.isLive)
+            return;
+
         // 애니메이션을 inputVec의 크기에 따라 설정 (run/stand)
         anim.SetFloat("Speed", inputVec.magnitude);
 

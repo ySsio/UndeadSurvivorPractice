@@ -19,12 +19,10 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
-        ControlWeapon();
+        if (!GameManager.instance.isLive)
+            return;
 
-        if (Input.GetButtonDown("Jump"))
-        {
-            LevelUp(20, 1);
-        }
+        ControlWeapon();
     }
 
     public void LevelUp(float _damage, int _count)

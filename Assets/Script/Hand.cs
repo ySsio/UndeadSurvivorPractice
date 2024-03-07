@@ -23,6 +23,8 @@ public class Hand : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (!GameManager.instance.isLive)
+            return;
         bool isReverse = playerSpriteRenderer.flipX;
 
         if (isLeft) // 근접 무기

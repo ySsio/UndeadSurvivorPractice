@@ -25,6 +25,8 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!GameManager.instance.isLive)
+            return;
         // 시간 카운트..
         curTime -= Time.deltaTime;
         level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / 4f), spawnData.Length - 1);
