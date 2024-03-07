@@ -77,4 +77,23 @@ public class Player : MonoBehaviour
     {
         inputVec = _inputValue.Get<Vector2>();  // 이미 normalize를 사용하기로 세팅했으므로 위에 FixedUpdate 문에서 normalized 사용 안해도 됨.
     }
+    
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (!GameManager.instance.isLive)
+            return;
+
+        GameManager.instance.health -= 30 * Time.deltaTime;
+
+        if (GameManager.instance.health < 0 )
+        {
+            for (int index = 2; index < transform.childCount; index++)
+            {
+                transform.GetChild(index).gameObject.SetActive(false);
+            }
+
+            anim.SetTrigger("Dead");
+            GameManager.instance.GameOver();
+        }
+    }
 }

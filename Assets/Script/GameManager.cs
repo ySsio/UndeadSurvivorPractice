@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,8 +14,8 @@ public class GameManager : MonoBehaviour
     public bool isLive;     // 게임 실행 중인지
 
     [Header("# Player Info")]
-    public int health;
-    public int maxHealth = 100;
+    public float health;
+    public float maxHealth = 100;
     public int level;
     public int kills;
     public int exp;
@@ -24,7 +25,8 @@ public class GameManager : MonoBehaviour
     public Player player;
     public PoolManager poolManager;
     public LevelUpWindow levelUpWindow;
-
+    public Result uiResult;
+    public GameObject enemyCleaner;
     
 
 
@@ -40,7 +42,43 @@ public class GameManager : MonoBehaviour
 
         levelUpWindow.Select(0);
 
-        isLive = true;
+        Resume();
+    }
+
+    public void GameOver()
+    {
+        StartCoroutine(GameOverRoutine());
+    }
+
+    IEnumerator GameOverRoutine()
+    {
+        isLive = false;
+        
+        yield return new WaitForSeconds(0.5f);  // 플레이어 묘비 애니메이션 들어가기르 기다림.
+        uiResult.gameObject.SetActive(true);
+        uiResult.Lose();
+        Stop();
+    }
+
+    public void GameVictory()
+    {
+        StartCoroutine(GameVictoryRoutine());
+    }
+
+    IEnumerator GameVictoryRoutine()
+    {
+        isLive = false;
+        enemyCleaner.SetActive(true);
+        yield return new WaitForSeconds(0.5f);  // 모든 몬스터 사망 애니메이션 기다림.
+
+        uiResult.gameObject.SetActive(true);
+        uiResult.Win();
+        Stop();
+    }
+
+    public void GameRetry()
+    {
+        SceneManager.LoadScene(0);
     }
 
     private void Update()
@@ -52,13 +90,16 @@ public class GameManager : MonoBehaviour
         if (gameTime >= maxGameTime)
         {
             gameTime = maxGameTime;
+            GameVictory();
         }
     }
 
     public void GetExp()
     {
-        ++exp;
+        if (!isLive)
+            return;
 
+        ++exp;
 
         if (exp >= MaxExp[Mathf.Min(level, MaxExp.Length - 1)])
         {
