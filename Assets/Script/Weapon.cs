@@ -27,7 +27,7 @@ public class Weapon : MonoBehaviour
 
     public void LevelUp(float _damage, int _count)
     {
-        damage = _damage; count += _count;
+        damage = _damage * Character.Damage; count += _count;
 
         if (id == 0)
         {
@@ -73,8 +73,8 @@ public class Weapon : MonoBehaviour
 
         // Property Set
         id = data.itemId;
-        damage = data.baseDamage;
-        count = data.baseCount;
+        damage = data.baseDamage * Character.Damage;
+        count = data.baseCount + Character.Count;
 
 
         // 이게 뭐지
@@ -99,7 +99,7 @@ public class Weapon : MonoBehaviour
 
             // id 1 : 원거리 무기 관리
             case 1:
-                speed = .3f;
+                speed = .5f * Character.WeaponRate;
 
                 break;
 

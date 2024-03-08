@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private Animator anim;
 
     public Hand[] hands; // [0]이 left, [1]이 right
+    public RuntimeAnimatorController[] animCon;
 
     private void Awake()
     {
@@ -24,6 +25,12 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         scanner = GetComponent<Scanner>();
         hands = GetComponentsInChildren<Hand>(true);    // 인자값으로 true를 넣으면 비활성화된 오브젝트에 대해서도 검출 (includeinactive)
+    }
+
+    private void OnEnable()
+    {
+        speed *= Character.Speed;
+        anim.runtimeAnimatorController = animCon[GameManager.instance.playerID];
     }
 
     // Update is called once per frame

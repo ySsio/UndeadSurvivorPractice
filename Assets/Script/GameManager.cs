@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public bool isLive;     // 게임 실행 중인지
 
     [Header("# Player Info")]
+    public int playerID;
     public float health;
     public float maxHealth = 100;
     public int level;
@@ -35,13 +36,12 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
-    public void GameStart()
+    public void GameStart(int _id)
     {
+        playerID = _id;
         health = maxHealth;
-        // 임시 스크립트 (첫번째 무기 지급)
-
-        levelUpWindow.Select(0);
-
+        player.gameObject.SetActive(true);
+        levelUpWindow.Select(playerID % 2);
         Resume();
     }
 

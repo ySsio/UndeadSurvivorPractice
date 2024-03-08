@@ -68,6 +68,7 @@ public class Item : MonoBehaviour
                     float nextDamage = data.baseDamage;
                     int nextCount = 0;
 
+                    Debug.Log(gameObject.name);
                     nextDamage += data.baseDamage * data.damages[level];
                     nextCount += data.counts[level];
 
