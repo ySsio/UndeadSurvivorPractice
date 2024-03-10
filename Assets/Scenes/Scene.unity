@@ -3825,7 +3825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameTime: 0
-  maxGameTime: 20
+  maxGameTime: 300
   isLive: 0
   playerID: 0
   health: 0
@@ -25246,6 +25246,7 @@ MonoBehaviour:
     spriteType: 3
     maxHealth: 10
     speed: 3.2
+  levelTime: 0
   timer: 0
 --- !u!1 &1951813753
 GameObject:
