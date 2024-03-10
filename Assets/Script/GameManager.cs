@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public PoolManager poolManager;
     public LevelUpWindow levelUpWindow;
     public Result uiResult;
+    public Transform uiJoy;
     public GameObject enemyCleaner;
     
 
@@ -124,11 +125,13 @@ public class GameManager : MonoBehaviour
     {
         isLive = false;
         Time.timeScale = 0;     // 유니티의 시간 속도 (배율). 기본값은 1.
+        uiJoy.localScale = Vector3.zero;
     }
 
     public void Resume()
     {
         isLive = true;
         Time.timeScale = 1;     // 유니티의 시간 속도 (배율). 기본값은 1.
+        uiJoy.localScale = Vector3.one;
     }
 }
