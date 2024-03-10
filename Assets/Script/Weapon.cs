@@ -149,10 +149,10 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private Transform Fire()
+    private void Fire()
     {
         if (!GameManager.instance.player.scanner.nearestTarget)
-            return null;
+            return;
 
         Vector3 targetPos = GameManager.instance.player.scanner.nearestTarget.position;
         Vector3 dir = (targetPos - transform.position).normalized;
@@ -172,8 +172,8 @@ public class Weapon : MonoBehaviour
         // √ ±‚»≠
         t_bullet.GetComponent<Bullet>().Init(damage, count, dir);
 
-        
 
-        return t_bullet;
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
+
     }
 }

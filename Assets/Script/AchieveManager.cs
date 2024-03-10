@@ -99,6 +99,8 @@ public class AchieveManager : MonoBehaviour
     IEnumerator NoticeRoutine()
     {
         uiNotice.SetActive(true);
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.LevelUp);
+
         yield return wait;  // 5초 기다린 후 안내창 비활성화
         uiNotice.SetActive(false);
     }
